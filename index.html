@@ -1,98 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhance Responsive Design</title>
-    <style>
-        :root {
-            --font-size-small: 12px;
-            --font-size-medium: 16px;
-            --font-size-large: 20px;
-            --padding-small: 8px;
-            --padding-medium: 16px;
-            --padding-large: 24px;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            font-size: clamp(var(--font-size-small), 2vw + 1rem, var(--font-size-large));
-        }
-        header, section, footer {
-            padding: var(--padding-medium);
-        }
-        @media (min-width: 320px) {
-            header {
-                text-align: center;
-            }
-        }
-        @media (min-width: 640px) {
-            header {
-                text-align: left;
-            }
-        }
-        @media (min-width: 1024px) {
-            header {
-                display: flex;
-                justify-content: space-between;
-            }
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-        @media (min-width: 640px) {
-            .grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        button {
-            padding: var(--padding-medium);
-            font-size: clamp(var(--font-size-small), 2vw + 1rem, var(--font-size-large));
-            cursor: pointer;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Forrest Field Enhancement Society – Ladysmith, BC</title>
+  <meta name="description" content="The Forrest Field Enhancement Society raises funds to enhance Forrest Field in Ladysmith, BC. Current priority: replace aging playground equipment. Major raffle launching soon." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Forrest Field Enhancement Society" />
+  <meta property="og:description" content="Community-led fundraising to upgrade Forrest Field. Current project: replace aging playground equipment. Boat raffle launching soon." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.example-domain.ca/" />
+  <meta property="og:image" content="https://www.example-domain.ca/og-image.jpg" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root {
+      --bg:#ffffff;
+      --text:#213547;
+      --muted:#5f6b7a;
+      --brand:#0a7d3c;
+      --brand-dark:#075f2d;
+      --light:#f4f6f8;
+      --border:#e5e8ec;
+    }
+    html, body {
+      margin:0; padding:0;
+      background:var(--bg); color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial,sans-serif;
+      line-height:1.6;
+    }
+    a { color:var(--brand); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .container { max-width:980px; margin:0 auto; padding:0 16px; }
+    header { border-bottom:1px solid var(--border); background:linear-gradient(180deg,#f9fbfa,transparent); }
+    .topbar { display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+    .brand { display:flex; gap:12px; align-items:center; }
+    .brand img { width:56px; height:56px; object-fit:contain; }
+    .brand h1 { font-size:1.25rem; margin:0; }
+    nav { display:flex; gap:14px; }
+    nav a { font-weight:600; }
+    .hero { padding:48px 0; }
+    .hero h2 { font-size:2rem; margin:0 0 10px; }
+    .hero p { color:var(--muted); max-width:60ch; margin:0; }
+    .cta-row { margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:10px 14px; border-radius:8px; border:1px solid var(--brand); font-weight:700; }
+    .btn.primary { background:var(--brand); color:white; border-color:var(--brand); }
+    .btn.primary:hover { background:var(--brand-dark); }
+    .btn.ghost { background:white; color:var(--brand); }
+    section { padding:28px 0; border-top:1px solid var(--border); }
+    section h3 { font-size:1.35rem; margin:0 0 8px; }
+    .grid { display:grid; grid-template-columns:1fr; gap:16px; }
+    @media(min-width:760px) { .grid.two { grid-template-columns:1fr 1fr; } }
+    .card { background:var(--light); border:1px solid var(--border); border-radius:10px; padding:16px; }
+    ul { padding-left:18px; }
+    footer { border-top:1px solid var(--border); padding:24px 0; background:#fafbfc; color:var(--muted); }
+    .small { font-size:0.94rem; color:var(--muted); }
+    .tag { padding:2px 8px; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--muted); background:white; margin-left:8px; }
+    .muted { color:var(--muted); }
+    .note { font-size:0.9rem; color:#6b7280; }
+    .figure { border:1px solid var(--border); background:white; border-radius:10px; padding:8px; }
+    .figure img { width:100%; height:auto; border-radius:8px; }
+    .figure figcaption { font-size:0.9rem; color:var(--muted); margin-top:6px; }
+    .list-compact li { margin-bottom:4px; }
+  </style>
 </head>
+
 <body>
-    <header>
-        <h1>Welcome to Our Website</h1>
-    </header>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <img src="FFES Logo.jpg" alt="Forrest Field Enhancement Society logo" />
+        <h1>Forrest Field Enhancement Society <span class="tag">Temporary Site</span></h1>
+      </div>
+      <nav>
+        <a href="#mission">Mission</a>
+        <a href="#project">Playground Upgrade</a>
+        <a href="#future">Future</a>
+        <a href="#raffle">Raffle</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
     <section class="hero">
-        <h2>Hero Section</h2>
-        <p>Original content for the Hero section...</p>
+      <div class="container">
+        <h2>Enhancing Forrest Field for Everyone</h2>
+        <p>
+          A community‑led nonprofit working with the Town of Ladysmith to deliver enhancements at Forrest Field that fall outside the Town’s current budget.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#project">See Current Project</a>
+          <a class="btn ghost" href="#raffle">Boat Raffle (Coming Soon)</a>
+          <a class="btn ghost" href="#purpose">Read Our Purpose</a>
+        </div>
+      </div>
     </section>
-    <section class="mission">
-        <h2>Our Mission</h2>
-        <p>Original content regarding our mission...</p>
+
+    <!-- MISSION -->
+    <section id="mission">
+      <div class="container grid two">
+        <div>
+          <h3>Our Mission</h3>
+          <p>
+            The Society formed from a coalition of Ladysmith Rotary, Kinsmen, Eagles, Lions, and Mid Island Soccer.  
+            We work with the Town of Ladysmith to enhance the Lot 108 / Forrest Field project.
+          </p>
+          <ul class="list-compact">
+            <li>Replace aging structures and equipment</li>
+            <li>Improve accessibility and safety</li>
+            <li>Support lifelong outdoor recreation</li>
+          </ul>
+          <p class="note">This is a temporary site for nonprofit verification.</p>
+        </div>
+
+        <div>
+          <figure class="figure">
+            <img src="forrestfield-Outdoor Fitness Equipment.jpg" alt="Outdoor fitness equipment" />
+            <figcaption>New equipment is planned pending fundraising.</figcaption>
+          </figure>
+        </div>
+      </div>
     </section>
-    <section class="purpose">
-        <h2>Our Purpose</h2>
-        <p>Original content explaining our purpose...</p>
+
+    <!-- PURPOSE -->
+    <section id="purpose">
+      <div class="container">
+        <h3>Purpose Statement (Summary)</h3>
+        <p>
+          Our purpose is to support top‑tier outdoor recreation facilities for all age groups in Ladysmith and central Vancouver Island.
+        </p>
+      </div>
     </section>
-    <section class="current-project">
-        <h2>Current Projects</h2>
-        <p>Information on current projects...</p>
+
+    <!-- CURRENT PROJECT -->
+    <section id="project">
+      <div class="container">
+        <h3>Current Priority: Playground Replacement</h3>
+
+        <div class="grid two">
+          <div class="card">
+            <h4>Project Overview</h4>
+            <p>
+              New equipment package quoted at <strong>$136,000</strong> (plus base/prep) from Habitat Equipment, including ~6 components such as slides, climbing structures, and swings.
+            </p>
+          </div>
+
+          <div class="card">
+            <h4>Why It Matters</h4>
+            <p>
+              Forrest Field is a key community recreation area.  
+              New equipment ensures safety, accessibility, and long‑term value to families.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
-    <section class="future-development">
-        <h2>Future Development</h2>
-        <p>Details regarding future development efforts...</p>
+
+
+    <!-- ✅ FUTURE DEVELOPMENT (UNIFORM WIDTH) -->
+    <section id="future">
+      <div class="container">
+        <h3>Future Phases of Development</h3>
+
+        <figure class="figure">
+          <img src="forrest-field-Phase 2.jpg" alt="Lot 108 Park Phase Two Upgrade Map" />
+          <figcaption>
+            Town of Ladysmith – Lot 108 Park Phase Two Concept Plan.
+          </figcaption>
+        </figure>
+
+        <p>
+          The Society and the Town of Ladysmith are jointly planning long‑term improvements for the Lot 108 area.
+        </p>
+
+        <ul>
+          <li><strong>Perimeter Trail</strong></li>
+          <li><strong>Outdoor Fitness Area</strong></li>
+          <li><strong>Bike Skill Development Area</strong></li>
+          <li><strong>Pickleball Courts</strong></li>
+          <li><strong>Upper & South Parking Areas</strong></li>
+          <li><strong>Practice Pitch</strong></li>
+        </ul>
+
+        <p class="note">Final elements may evolve as the project progresses.</p>
+      </div>
     </section>
-    <section class="raffle">
-        <h2>Raffle</h2>
-        <p>Information about our raffle...</p>
+
+
+    <!-- RAFFLE -->
+    <section id="raffle">
+      <div class="container">
+        <h3>Fundraising Feature: Major Raffle</h3>
+
+        <div class="grid two">
+          <div>
+            <p>
+              A major raffle will raise funds toward the playground project.  
+              Max 1,200 tickets at $100 each; goal is ~$67,000 net for the project.
+            </p>
+
+            <ul>
+              <li><strong>Sea‑Doo Switch Sport 170</strong> ($46,963 value)</li>
+              <li><strong>$3,000</strong> travel voucher</li>
+              <li><strong>$2,500</strong> tool package</li>
+              <li><strong>$500</strong> spa certificate</li>
+            </ul>
+
+            <p class="note"><strong>Disclaimer:</strong> Odds of winning are 1 in 1200!</p>
+          </div>
+
+          <div>
+            <figure class="figure">
+              <img src="Custom Switch-Sport-Compact.jpg" alt="Boat prize" />
+              <figcaption>Representative prize image—final photos coming soon.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
     </section>
-    <section class="contact">
-        <h2>Contact Us</h2>
-        <p>Ways to contact us...</p>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container grid two">
+        <div>
+          <h3>Contact & Updates</h3>
+          <p>Email: <a href="mailto:forrestfieldesadmin@gmail.com">forrestfieldesadmin@gmail.com</a></p>
+          <p class="small muted">More details and a full website coming soon.</p>
+        </div>
+
+        <div class="card">
+          <h4>How You Can Help</h4>
+          <ul>
+            <li>Share the raffle</li>
+            <li>Spread awareness</li>
+            <li>Volunteer</li>
+          </ul>
+          <p><a class="btn primary" aria-disabled="true">Donate (Coming Soon)</a></p>
+        </div>
+      </div>
     </section>
-    <footer>
-        <h2>Board Members</h2>
-        <p>List of board members...</p>
-    </footer>
+
+
+    <!-- BOARD -->
+    <section id="board">
+      <div class="container">
+        <h3>Board (2026)</h3>
+        <ul class="list-compact">
+          <li><strong>Chair:</strong> Kenneth R. Greig</li>
+          <li><strong>Vice Chair:</strong> Jason Kelland</li>
+          <li><strong>Treasurer:</strong> Jim Cram</li>
+          <li><strong>Secretary:</strong> Tonya Soules</li>
+          <li><strong>Director at Large:</strong> Rahul Sandhu</li>
+          <li><strong>Director at Large:</strong> Melanie Ingham</li>
+          <li><strong>Director at Large:</strong> Kevin Mills</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="small">
+        <strong>Forrest Field Enhancement Society</strong> — Ladysmith, BC  
+        <br />
+        <span class="muted">Temporary site for nonprofit verification.</span>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
