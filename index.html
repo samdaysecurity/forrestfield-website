@@ -3,55 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Forrestfield Website</title>
+    <title>Enhance Responsive Design</title>
     <style>
+        :root {
+            --font-size-small: 12px;
+            --font-size-medium: 16px;
+            --font-size-large: 20px;
+            --padding-small: 8px;
+            --padding-medium: 16px;
+            --padding-large: 24px;
+        }
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
             margin: 0;
             padding: 0;
+            font-size: clamp(var(--font-size-small), 2vw + 1rem, var(--font-size-large));
         }
-
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
+        header, section, footer {
+            padding: var(--padding-medium);
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px;
-        }
-
-        /* Responsive styles */
-        @media only screen and (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
+        @media (min-width: 320px) {
             header {
-                padding: 5px 10px;
+                text-align: center;
             }
         }
-
-        @media only screen and (max-width: 480px) {
-            body {
-                font-size: 14px;
-            }
+        @media (min-width: 640px) {
             header {
-                font-size: 16px;
+                text-align: left;
             }
+        }
+        @media (min-width: 1024px) {
+            header {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        button {
+            padding: var(--padding-medium);
+            font-size: clamp(var(--font-size-small), 2vw + 1rem, var(--font-size-large));
+            cursor: pointer;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to Forrestfield Website</h1>
+        <h1>Welcome to Our Website</h1>
     </header>
-    <div class="container">
-        <p>This is a sample paragraph to showcase the improved responsive design.</p>
-    </div>
+    <section class="hero">
+        <h2>Hero Section</h2>
+        <p>Original content for the Hero section...</p>
+    </section>
+    <section class="mission">
+        <h2>Our Mission</h2>
+        <p>Original content regarding our mission...</p>
+    </section>
+    <section class="purpose">
+        <h2>Our Purpose</h2>
+        <p>Original content explaining our purpose...</p>
+    </section>
+    <section class="current-project">
+        <h2>Current Projects</h2>
+        <p>Information on current projects...</p>
+    </section>
+    <section class="future-development">
+        <h2>Future Development</h2>
+        <p>Details regarding future development efforts...</p>
+    </section>
+    <section class="raffle">
+        <h2>Raffle</h2>
+        <p>Information about our raffle...</p>
+    </section>
+    <section class="contact">
+        <h2>Contact Us</h2>
+        <p>Ways to contact us...</p>
+    </section>
+    <footer>
+        <h2>Board Members</h2>
+        <p>List of board members...</p>
+    </footer>
 </body>
 </html>
