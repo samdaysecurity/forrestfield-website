@@ -57,7 +57,7 @@
     .brand {
       display:flex; gap:12px; align-items:center;
     }
-    /* 3× larger logo (56px -> 168px) */
+    /* current header logo size */
     .brand img { width:112px; height:112px; object-fit:contain; }
     .brand h1 { font-size:2rem; margin:0; line-height:1.25; }
 
@@ -74,13 +74,12 @@
     .btn.primary:hover { background:var(--brand-dark); }
     .btn.ghost { background:white; color:var(--brand); }
 
-    /* >>> ONE-LINE FIX ADDED HERE for anchor offset <<< */
+    /* >>> Anchor offset so sections don't hide under the sticky header <<< */
     section { 
       padding:28px 0; 
       border-top:1px solid var(--border); 
       scroll-margin-top: 200px; /* leave space for the sticky header when using #anchors */
     }
-    /* >>> END OF CHANGE <<< */
 
     section h3 { font-size:1.35rem; margin:0 0 8px; }
 
@@ -110,6 +109,32 @@
 
     /* Ensure images never overflow */
     img { max-width: 100%; height: auto; }
+
+    /* === HERO side-by-side layout (added) === */
+    .hero .hero-wrap {
+      display: flex;
+      align-items: center;            /* vertically center text vs. logo */
+      justify-content: space-between; /* space between text and image */
+      gap: 24px;                      /* space between columns */
+    }
+    .hero .hero-copy {
+      flex: 1 1 52ch;                 /* text/buttons column grows with readable width */
+      min-width: 280px;
+    }
+    .hero .hero-media {
+      flex: 0 0 320px;                /* default logo column width on desktop */
+      max-width: 40%;                 /* keep logo proportionate to content */
+    }
+    .hero .hero-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    /* Stack hero on narrow screens */
+    @media (max-width: 760px) {
+      .hero .hero-wrap { flex-direction: column; align-items: flex-start; }
+      .hero .hero-media { width: 70%; max-width: 380px; }
+    }
   </style>
 </head>
 <body>
@@ -117,17 +142,16 @@
     <div class="container topbar">
       <div class="brand">
         <img src="FFES Logo.jpg" alt="Forrest Field Enhancement Society logo" />
-       <nav>
-        <a href="#mission">Mission</a>
-        <a href="#project">Playground project</a>
-		 <a href="#raffle">Raffle</a>
-        <a href="#future">Future</a>       
-        <a href="#contact">Contact</a>
-		<a href="#board">Board</a>
-		<a href="https://www.facebook.com/profile.php?id=61573766750926" target="_blank">		
-  <img src="facebook-logo.png" alt="Facebook" style="width:32px; height:32px;">
-</a>
-      </nav>
+        <nav>
+          <a href="#mission">Mission</a>
+          <a href="#project">Playground project</a>
+          <a href="#future">Future</a>
+          <a href="#raffle">Raffle</a>
+          <a href="#contact">Contact</a>
+          <a href="https://www.facebook.com/profile.php?id=61573766750926" target="_blank">
+            <img src="facebook-logo.png" alt="Facebook" style="width:32px; height:32px;">
+          </a>
+        </nav>
       </div>      
     </div>
   </header>
@@ -136,15 +160,25 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container">
-		<h2>Forrest Field Enhancement Society</h2>
-        <h3>Enhancing Forrest Field for Everyone</h3>
-        <p>
-          A community‑led nonprofit working with the Town of Ladysmith to deliver enhancements at Forrest Field that fall outside the Town’s current budget.
-        </p>
-        <div class="cta-row">
-          <a class="btn primary" href="#project">See Current Project</a>
-          <a class="btn ghost" href="#raffle">Boat Raffle (Coming Soon)</a>
-          <a class="btn ghost" href="#purpose">Read Our Purpose</a>
+        <div class="hero-wrap">
+          <!-- Left column: headings, paragraph, and buttons -->
+          <div class="hero-copy">
+            <h2>Forrest Field Enhancement Society</h2>
+            <h3>Enhancing Forrest Field for Everyone</h3>
+            <p>
+              A community‑led nonprofit working with the Town of Ladysmith to deliver enhancements at Forrest Field that fall outside the Town’s current budget.
+            </p>
+            <div class="cta-row">
+              <a class="btn primary" href="#project">See Current Project</a>
+              <a class="btn ghost" href="#raffle">Boat Raffle (Coming Soon)</a>
+              <a class="btn ghost" href="#purpose">Read Our Purpose</a>
+            </div>
+          </div>
+
+          <!-- Right column: logo image (moved out of .cta-row) -->
+          <figure class="hero-media">
+            <img src="FFES Logo.jpg" alt="Forrest Field Enhancement Society logo">
+          </figure>
         </div>
       </div>
     </section>
@@ -173,33 +207,33 @@
       </div>
     </section>
 
-   <!-- PURPOSE -->
-<section id="purpose">
-  <div class="container">
-    <h3>Purpose Statement (Summary)</h3>
+    <!-- PURPOSE -->
+    <section id="purpose">
+      <div class="container">
+        <h3>Purpose Statement (Summary)</h3>
 
-    <p>
-      Our purpose is to improve the health and wellbeing of community members by promoting active, healthy outdoor living. 
-      We support top‑tier local outdoor recreation and sporting facilities that serve all age groups and diverse community needs.
-      As part of the Lot 108 (Forrest Field) enhancement plan, we aim to assist with key improvements such as:
-    </p>
+        <p>
+          Our purpose is to improve the health and wellbeing of community members by promoting active, healthy outdoor living. 
+          We support top‑tier local outdoor recreation and sporting facilities that serve all age groups and diverse community needs.
+          As part of the Lot 108 (Forrest Field) enhancement plan, we aim to assist with key improvements such as:
+        </p>
 
-    <ul>
-      <li>Creating a <strong>wheelchair‑accessible walkway</strong> with <strong>outdoor accessible fitness equipment</strong></li>
-      <li>Constructing a <strong>walking trail</strong> with additional workout and activity stations</li>
-      <li>Building a <strong>professionally engineered BMX bike park</strong> with designed ramps and features</li>
-      <li>Developing a <strong>multi‑use outdoor lacrosse‑style arena</strong> suitable for lacrosse, floor/ball hockey, and basketball</li>
-      <li>Adding new <strong>pickleball and tennis courts</strong></li>
-      <li>Enhancing the clubhouse with upgrades such as a <strong>fully accessible elevator</strong> and <strong>commercial kitchen/canteen equipment</strong></li>
-      <li>Supporting the purchase of <strong>sporting equipment</strong> for soccer, football, tennis, pickleball, lacrosse, basketball, ball hockey, and other sports</li>
-    </ul>
+        <ul>
+          <li>Creating a <strong>wheelchair‑accessible walkway</strong> with <strong>outdoor accessible fitness equipment</strong></li>
+          <li>Constructing a <strong>walking trail</strong> with additional workout and activity stations</li>
+          <li>Building a <strong>professionally engineered BMX bike park</strong> with designed ramps and features</li>
+          <li>Developing a <strong>multi‑use outdoor lacrosse‑style arena</strong> suitable for lacrosse, floor/ball hockey, and basketball</li>
+          <li>Adding new <strong>pickleball and tennis courts</strong></li>
+          <li>Enhancing the clubhouse with upgrades such as a <strong>fully accessible elevator</strong> and <strong>commercial kitchen/canteen equipment</strong></li>
+          <li>Supporting the purchase of <strong>sporting equipment</strong> for soccer, football, tennis, pickleball, lacrosse, basketball, ball hockey, and other sports</li>
+        </ul>
 
-    <p>
-      These enhancements will promote inclusive, active, healthy outdoor activities for all ages and abilities across Ladysmith and 
-      the surrounding central Vancouver Island region.
-    </p>
-  </div>
-</section>
+        <p>
+          These enhancements will promote inclusive, active, healthy outdoor activities for all ages and abilities across Ladysmith and 
+          the surrounding central Vancouver Island region.
+        </p>
+      </div>
+    </section>
 
     <!-- CURRENT PROJECT -->
     <section id="project">
@@ -220,7 +254,7 @@
             </p>
           </div>
         </div>
-		 <figure class="figure">
+        <figure class="figure">
           <img src="forrest-field-playground-southview-ai-new.png" alt="Lot 108 Park Phase Two Upgrade Map" />
           <figcaption>
             New Playground! Note: Image is AI generated as representation of new equipment (AI image does not include swings)
@@ -256,8 +290,8 @@
         </div>
       </div>
     </section>
-	
- <!-- FUTURE DEVELOPMENT -->
+    
+    <!-- FUTURE DEVELOPMENT -->
     <section id="future">
       <div class="container">
         <h3>Future Phases of Development</h3>
@@ -288,10 +322,8 @@
         <div>
           <h3>Contact &amp; Updates</h3>
           <p>19 - 5150 Christie Rd.</p>
-		  <p>Ladysmith BC V9G 1J2</p>
-		  <p>Email: <a href="mailto:info@forrestfieldes.ca">info@forrestfieldes.ca</a></p>	
-		  <p><a href="https://www.facebook.com/profile.php?id=61573766750926" target="_blank">
-  <img src="facebook-logo.png" alt="Facebook" style="width:32px; height:32px;"></p>	
+          <p>Ladysmith BC V9G 1J2</p>
+          <p>Email: <a href="mailto:info@forrestfieldes.ca">info@forrestfieldes.ca</a></p>
           <p class="small muted">More details and a full website coming soon.</p>
         </div>
         <div class="card">
