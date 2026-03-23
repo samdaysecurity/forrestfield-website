@@ -27,6 +27,7 @@
       background:var(--bg); color:var(--text);
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial,sans-serif;
       line-height:1.6;
+      scroll-behavior: smooth; /* nice smooth jump to top */
     }
     a { color:var(--brand); text-decoration:none; }
     a:hover { text-decoration:underline; }
@@ -63,6 +64,11 @@
 
     nav { display:flex; gap:14px; flex-wrap:wrap; }
     nav a { font-weight:600; text-decoration: underline; }
+
+    /* Make the logo clickable without changing layout/size */
+    .logo-link { display:inline-block; line-height:0; }
+    .logo-link:hover { text-decoration:none; }
+    .logo-link img { display:block; } /* prevents baseline spacing shifts */
 
     /* ===== Main content ===== */
     .hero { padding:48px 0; }
@@ -138,16 +144,23 @@
   </style>
 </head>
 <body>
+  <!-- Top anchor for 'back to top' link -->
+  <div id="top"></div>
+
   <header>
     <div class="container topbar">
       <div class="brand">
-        <img src="FFES Logo.jpg" alt="Forrest Field Enhancement Society logo" />
+        <!-- Make the header logo clickable to go to top -->
+        <a href="#top" class="logo-link">
+          <img src="FFES Logo.jpg" alt="Forrest Field Enhancement Society logo" />
+        </a>
         <nav>
           <a href="#mission">Mission</a>
-          <a href="#project">Playground project</a>
-          <a href="#future">Future</a>
+          <a href="#project">Playground project</a>          
           <a href="#raffle">Raffle</a>
+		  <a href="#future">Future</a>
           <a href="#contact">Contact</a>
+		  <a href="#board">Board</a>
           <a href="https://www.facebook.com/profile.php?id=61573766750926" target="_blank">
             <img src="facebook-logo.png" alt="Facebook" style="width:32px; height:32px;">
           </a>
@@ -324,7 +337,9 @@
           <p>19 - 5150 Christie Rd.</p>
           <p>Ladysmith BC V9G 1J2</p>
           <p>Email: <a href="mailto:info@forrestfieldes.ca">info@forrestfieldes.ca</a></p>
-          <p class="small muted">More details and a full website coming soon.</p>
+          <p class="small muted">More details and a full website coming soon. </p>
+		  <p class="small muted"> Check out our facebook page <a href="https://www.facebook.com/profile.php?id=61573766750926" target="_blank">
+            <img src="facebook-logo.png" alt="Facebook" style="width:32px; height:20px;"></p>
         </div>
         <div class="card">
           <h4>How You Can Help</h4>
