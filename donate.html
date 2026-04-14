@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Donate to the Forrest Field Enhancement Society | Ladysmith BC</title>
+
+<meta name="description" content="Support playground improvements at Forrest Field in Ladysmith, BC. Donate via Interac e-Transfer to help fund safe, accessible community recreation for local families." />
+
+<!-- Open Graph / Social Sharing -->
+<meta property="og:title" content="Donate to the Forrest Field Enhancement Society" />
+<meta property="og:description" content="Your donation supports the replacement of aging playground equipment and community recreation improvements at Forrest Field in Ladysmith, BC." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forrestfield.ca/donate" />
+<meta property="og:image" content="https://forrestfield.ca/forrestlogo-highres.png" />
+<link rel="icon" href="/favicon.ico" />
+
+  <style>
+    :root {
+      --bg:#ffffff;
+      --text:#213547;
+      --muted:#5f6b7a;
+      --brand:#0a7d3c;
+      --brand-dark:#075f2d;
+      --light:#f4f6f8;
+      --border:#e5e8ec;
+    }
+    html, body {
+      margin:0; padding:0;
+      background:var(--bg); color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial,sans-serif;
+      line-height:1.6;
+      scroll-behavior: smooth; /* nice smooth jump to top */
+    }
+    a { color:var(--brand); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .container { max-width:980px; margin:0 auto; padding:0 16px; }
+
+    /* ===== Header (sticky, title row above menu row) ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      /* solid background so nothing shows through */
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+
+      /* ensure no translucency */
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .topbar {
+      display:flex;
+      flex-direction: column;   /* Title + logo row first, then menu row */
+      align-items:flex-start;
+      justify-content:center;
+      padding:14px 0;
+      gap:10px;
+    }
+    .brand {
+      display:flex; gap:12px; align-items:center;
+    }
+    /* current header logo size */
+    .brand img { width:112px; height:112px; object-fit:contain; }
+    .brand h1 { font-size:2rem; margin:0; line-height:1.25; }
+
+    nav { display:flex; gap:14px; flex-wrap:wrap; }
+    nav a { font-weight:600; text-decoration: underline; }
+
+    /* Make the logo clickable without changing layout/size */
+    .logo-link { display:inline-block; line-height:0; }
+    .logo-link:hover { text-decoration:none; }
+    .logo-link img { display:block; } /* prevents baseline spacing shifts */
+
+    /* ===== Main content ===== */
+    .hero { padding:48px 0; }
+    .hero h2 { font-size:2rem; margin:0 0 10px; }
+    .hero p { color:var(--muted); max-width:60ch; margin:0; }
+    .cta-row { margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:10px 14px; border-radius:8px; border:1px solid var(--brand); font-weight:700; }
+    .btn.primary { background:var(--brand); color:white; border-color:var(--brand); }
+    .btn.primary:hover { background:var(--brand-dark); }
+    .btn.ghost { background:white; color:var(--brand); }
+
+    /* >>> Anchor offset so sections don't hide under the sticky header <<< */
+    section { 
+      padding:28px 0; 
+      border-top:1px solid var(--border); 
+      scroll-margin-top: 120px; /* leave space for the sticky header when using #anchors */
+    }
+
+    section h3 { font-size:1.35rem; margin:0 0 8px; }
+
+    .grid { display:grid; grid-template-columns:1fr; gap:16px; }
+    @media(min-width:760px) { .grid.two { grid-template-columns:1fr 1fr; } }
+
+    .card { background:var(--light); border:1px solid var(--border); border-radius:10px; padding:16px; }
+    ul { padding-left:18px; }
+
+    footer { border-top:1px solid var(--border); padding:24px 0; background:#fafbfc; color:var(--muted); }
+    .small { font-size:0.94rem; color:var(--muted); }
+    .tag { padding:2px 8px; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--muted); background:white; margin-left:8px; }
+    .muted { color:var(--muted); }
+    .note { font-size:0.9rem; color:#6b7280; }
+
+    .figure { border:1px solid var(--border); background:white; border-radius:10px; padding:8px; }
+    .figure img { width:100%; height:auto; border-radius:8px; }
+    .figure figcaption { font-size:0.9rem; color:var(--muted); margin-top:6px; }
+    .list-compact li { margin-bottom:4px; }
+
+    /* --- Mobile tweaks so the taller header stays tidy --- */
+    @media (max-width: 720px) {
+      .brand img { width:140px; height:140px; }
+      .brand h1 { font-size:1.6rem; }
+      nav { width:100%; row-gap:6px; }
+    }
+
+    /* Ensure images never overflow */
+    img { max-width: 100%; height: auto; }
+
+    /* === HERO side-by-side layout (added) === */
+    .hero .hero-wrap {
+      display: flex;
+      align-items: center;            /* vertically center text vs. logo */
+      justify-content: space-between; /* space between text and image */
+      gap: 24px;                      /* space between columns */
+    }
+    .hero .hero-copy {
+      flex: 1 1 52ch;                 /* text/buttons column grows with readable width */
+      min-width: 280px;
+    }
+    .hero .hero-media {
+      flex: 0 0 320px;                /* default logo column width on desktop */
+      max-width: 40%;                 /* keep logo proportionate to content */
+    }
+    .hero .hero-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    /* Stack hero on narrow screens */
+    @media (max-width: 760px) {
+      .hero .hero-wrap { flex-direction: column; align-items: flex-start; }
+      .hero .hero-media { width: 70%; max-width: 380px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top anchor for 'back to top' link -->
+  <div id="top"></div>
+
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <!-- Make the header logo clickable to go to top -->
+        <a href="#top" class="logo-link">
+          <img src="forrestlogo-highres.png" alt="Forrest Field Enhancement Society logo" />
+        </a>
+        <nav>
+          <a href="/#mission">Mission</a>
+          <a href="/#project">Playground project</a>          
+          <a href="/#raffle">Raffle</a>
+		  <a href="/#future">Future</a>
+          <a href="/#contact">Contact</a>
+		  <a href="/#board">Board</a>
+		  <a href="/donate">Donate</a>
+		  <a href="/volunteer">Volunteer</a>
+          <a href="https://www.facebook.com/profile.php?id=61573766750926" target="_blank">
+            <img src="facebook-logo.png" alt="Facebook" style="width:32px; height:32px;">
+          </a>
+        </nav>
+      </div>      
+    </div>
+  </header>
+
+  <main>
+<section>
+  <div class="container">
+    <h1>Support the New Playground</h1>
+    <p>
+      Your donation helps fund the replacement of aging playground equipment at Forrest Field in Ladysmith.
+      This project will provide a safer, more accessible, and more inclusive play space for local families
+      and children.
+    </p>
+  </div>
+</section>
+
+  
+<section>
+  <div class="container card">
+    <h2>How to Donate</h2>
+
+    <ol>
+      <li>
+        Send an <strong>Interac e‑Transfer</strong> to:<br>
+        <strong>donate@forrestfieldes.ca</strong>
+      </li>
+      <li>
+        Autodeposit is enabled — no password is required.
+      </li>
+      <li>
+        Complete the form below so we can properly record and acknowledge your donation.
+      </li>
+    </ol>
+
+    <p class="note">
+      Donations are used directly to support playground replacement and related site improvements at Forrest Field.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container card">
+    <h2>Donation Information</h2>
+
+    <!-- FORM: Replace action URL with your Formspree endpoint -->
+    <form
+      action="https://formspree.io/f/xjgjvqoy"
+      method="POST">
+
+      <div class="form-row">
+        <label for="name">Full Name</label>
+        <input id="name" name="name" type="text" required>
+      </div>
+
+      <div class="form-row">
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+
+      <div class="form-row">
+        <label for="amount">Donation Amount (CAD)</label>
+        <input id="amount" name="amount" type="number" step="0.01" min="1" required>
+      </div>
+
+      <div class="form-row">
+        <label for="date">Date e‑Transfer Sent</label>
+        <input id="date" name="date_sent" type="date" required>
+      </div>
+
+      <div class="form-row">
+        <label for="message">Optional Message</label>
+        <textarea id="message" name="message"></textarea>
+      </div>
+
+      <!-- Honeypot spam field -->
+      <input type="text" name="_gotcha" style="display:none">
+
+      <button class="btn" type="submit">Submit Donation Details</button>
+    </form>
+
+    <p class="note" style="margin-top:16px;">
+      <strong>Important:</strong> The Forrest Field Enhancement Society is a registered society and
+      <strong>is not able to issue charitable tax receipts</strong> for donations.
+    </p>
+  </div>
+</section>
+
+</main>
+
+  <footer>
+    <div class="container">
+      <div class="small">
+        <strong>Forrest Field Enhancement Society</strong> — Ladysmith, BC - <a href="/privacy">Privacy Policy</a>
+        <br />
+        <span class="muted"><a href="mailto:info@forrestfieldes.ca">info@forrestfieldes.ca</a></span>
+		  <p>Website design setup and hosting courtesy of Sam Day</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

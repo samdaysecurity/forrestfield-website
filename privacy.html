@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Privacy Statement | Forrest Field Enhancement Society</title>
+
+<meta name="description" content="Read the Forrest Field Enhancement Society privacy statement outlining how personal information is collected, used, and protected for donations, volunteers, raffles, and community activities in Ladysmith, BC." />
+
+<!-- Open Graph / Social Sharing -->
+<meta property="og:title" content="Privacy Statement – Forrest Field Enhancement Society" />
+<meta property="og:description" content="Learn how the Forrest Field Enhancement Society collects, uses, and protects personal information for volunteers, donors, raffles, and community programs." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://forrestfield.ca/privacy" />
+<meta property="og:image" content="https://forrestfield.ca/forrestlogo-highres.png" />
+
+<link rel="icon" href="/favicon.ico" />
+  <style>
+    :root {
+      --bg:#ffffff;
+      --text:#213547;
+      --muted:#5f6b7a;
+      --brand:#0a7d3c;
+      --brand-dark:#075f2d;
+      --light:#f4f6f8;
+      --border:#e5e8ec;
+    }
+    html, body {
+      margin:0; padding:0;
+      background:var(--bg); color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Arial,sans-serif;
+      line-height:1.6;
+      scroll-behavior: smooth; /* nice smooth jump to top */
+    }
+    a { color:var(--brand); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .container { max-width:980px; margin:0 auto; padding:0 16px; }
+
+    /* ===== Header (sticky, title row above menu row) ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      /* solid background so nothing shows through */
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+
+      /* ensure no translucency */
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .topbar {
+      display:flex;
+      flex-direction: column;   /* Title + logo row first, then menu row */
+      align-items:flex-start;
+      justify-content:center;
+      padding:14px 0;
+      gap:10px;
+    }
+    .brand {
+      display:flex; gap:12px; align-items:center;
+    }
+    /* current header logo size */
+    .brand img { width:112px; height:112px; object-fit:contain; }
+    .brand h1 { font-size:2rem; margin:0; line-height:1.25; }
+
+    nav { display:flex; gap:14px; flex-wrap:wrap; }
+    nav a { font-weight:600; text-decoration: underline; }
+
+    /* Make the logo clickable without changing layout/size */
+    .logo-link { display:inline-block; line-height:0; }
+    .logo-link:hover { text-decoration:none; }
+    .logo-link img { display:block; } /* prevents baseline spacing shifts */
+
+    /* ===== Main content ===== */
+    .hero { padding:48px 0; }
+    .hero h2 { font-size:2rem; margin:0 0 10px; }
+    .hero p { color:var(--muted); max-width:60ch; margin:0; }
+    .cta-row { margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:10px 14px; border-radius:8px; border:1px solid var(--brand); font-weight:700; }
+    .btn.primary { background:var(--brand); color:white; border-color:var(--brand); }
+    .btn.primary:hover { background:var(--brand-dark); }
+    .btn.ghost { background:white; color:var(--brand); }
+
+    /* >>> Anchor offset so sections don't hide under the sticky header <<< */
+    section { 
+      padding:28px 0; 
+      border-top:1px solid var(--border); 
+      scroll-margin-top: 120px; /* leave space for the sticky header when using #anchors */
+    }
+
+    section h3 { font-size:1.35rem; margin:0 0 8px; }
+
+    .grid { display:grid; grid-template-columns:1fr; gap:16px; }
+    @media(min-width:760px) { .grid.two { grid-template-columns:1fr 1fr; } }
+
+    .card { background:var(--light); border:1px solid var(--border); border-radius:10px; padding:16px; }
+    ul { padding-left:18px; }
+
+    footer { border-top:1px solid var(--border); padding:24px 0; background:#fafbfc; color:var(--muted); }
+    .small { font-size:0.94rem; color:var(--muted); }
+    .tag { padding:2px 8px; border:1px solid var(--border); border-radius:999px; font-size:0.8rem; color:var(--muted); background:white; margin-left:8px; }
+    .muted { color:var(--muted); }
+    .note { font-size:0.9rem; color:#6b7280; }
+
+    .figure { border:1px solid var(--border); background:white; border-radius:10px; padding:8px; }
+    .figure img { width:100%; height:auto; border-radius:8px; }
+    .figure figcaption { font-size:0.9rem; color:var(--muted); margin-top:6px; }
+    .list-compact li { margin-bottom:4px; }
+
+    /* --- Mobile tweaks so the taller header stays tidy --- */
+    @media (max-width: 720px) {
+      .brand img { width:140px; height:140px; }
+      .brand h1 { font-size:1.6rem; }
+      nav { width:100%; row-gap:6px; }
+    }
+
+    /* Ensure images never overflow */
+    img { max-width: 100%; height: auto; }
+
+    /* === HERO side-by-side layout (added) === */
+    .hero .hero-wrap {
+      display: flex;
+      align-items: center;            /* vertically center text vs. logo */
+      justify-content: space-between; /* space between text and image */
+      gap: 24px;                      /* space between columns */
+    }
+    .hero .hero-copy {
+      flex: 1 1 52ch;                 /* text/buttons column grows with readable width */
+      min-width: 280px;
+    }
+    .hero .hero-media {
+      flex: 0 0 320px;                /* default logo column width on desktop */
+      max-width: 40%;                 /* keep logo proportionate to content */
+    }
+    .hero .hero-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    /* Stack hero on narrow screens */
+    @media (max-width: 760px) {
+      .hero .hero-wrap { flex-direction: column; align-items: flex-start; }
+      .hero .hero-media { width: 70%; max-width: 380px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top anchor for 'back to top' link -->
+  <div id="top"></div>
+
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <!-- Make the header logo clickable to go to top -->
+        <a href="#top" class="logo-link">
+          <img src="forrestlogo-highres.png" alt="Forrest Field Enhancement Society logo" />
+        </a>
+        <nav>
+          <a href="/#mission">Mission</a>
+          <a href="/#project">Playground project</a>          
+          <a href="/#raffle">Raffle</a>
+		  <a href="/#future">Future</a>
+          <a href="/#contact">Contact</a>
+		  <a href="/#board">Board</a>
+		  <a href="/donate">Donate</a>
+		  <a href="/volunteer">Volunteer</a>
+          <a href="https://www.facebook.com/profile.php?id=61573766750926" target="_blank">
+            <img src="facebook-logo.png" alt="Facebook" style="width:32px; height:32px;">
+          </a>
+        </nav>
+      </div>      
+    </div>
+  </header>
+
+  <main>
+  <section>
+  <div class="container">
+    <h3>Privacy Statement</h3>
+    <p>
+      The Forrest Field Enhancement Society (the “Society”) respects the privacy of donors,
+      volunteers, raffle participants, and community members. This Privacy Statement describes
+      how personal information is collected, used, stored, and protected through our website,
+      fundraising activities, and community programs.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Applicable Legislation</h3>
+    <p>
+      The Society is incorporated under the Societies Act of British Columbia and manages
+      personal information in a manner consistent with applicable provincial privacy
+      principles and expectations for non-profit organizations operating in British Columbia.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Information We Collect</h3>
+    <p>The Society collects only information reasonably required to support Society activities.</p>
+    <ul>
+      <li>Name</li>
+      <li>Email address</li>
+      <li>Phone number</li>
+      <li>Mailing address</li>
+      <li>Volunteer availability and interests</li>
+      <li>Donation-related information (such as donation amount and date sent)</li>
+      <li>Raffle ticket purchase and contact information</li>
+      <li>Newsletter and fundraising communication preferences</li>
+      <li>Messages or information voluntarily provided</li>
+    </ul>
+    <p>
+      The Society does not collect banking credentials, credit card numbers, Interac e‑Transfer
+      login information, government-issued identification numbers, or other unnecessary
+      sensitive personal data.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>How Information Is Collected</h3>
+    <p>
+      Personal information may be collected through website forms, volunteer and donation
+      submissions, raffle ticket purchases, newsletter sign-ups, and other Society-led
+      community or fundraising activities.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Raffles and Gaming Activities</h3>
+    <p>
+      The Society conducts raffles and gaming activities in accordance with applicable
+      British Columbia gaming rules and licence requirements.
+    </p>
+    <p>
+      Personal information related to raffle participation is collected and processed using
+      Raffle Nexus for the purposes of ticket sales, eligibility verification, winner
+      notification, regulatory compliance, record keeping, and communication regarding
+      future raffles and Society fundraising initiatives.
+    </p>
+    <p class="note">
+      Participation in a raffle constitutes consent to the collection and use of personal
+      information in accordance with this Privacy Statement and applicable gaming regulations.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Use of Information</h3>
+    <ul>
+      <li>Donation processing and acknowledgment</li>
+      <li>Volunteer coordination and communication</li>
+      <li>Raffle administration and compliance</li>
+      <li>Society newsletters and fundraising communications</li>
+      <li>Internal record keeping and reporting</li>
+    </ul>
+    <p>
+      Personal information is not sold, rented, or used for commercial marketing purposes.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Email Communications and CASL Compliance</h3>
+    <p>
+      The Society may send emails related to donations, raffle participation, volunteer
+      coordination, newsletters, and Society fundraising initiatives.
+    </p>
+    <p>
+      Email communications are delivered using CASL-compliant third‑party tools, and
+      recipients may unsubscribe from non-essential communications at any time using the
+      unsubscribe mechanism provided or by contacting the Society directly.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Third-Party Service Providers</h3>
+    <p>
+      The Society uses reputable third‑party service providers to support operations,
+      including:
+    </p>
+    <ul>
+      <li>Formspree – website form processing</li>
+      <li>Google Workspace – email and document management</li>
+      <li>Raffle Nexus – raffle and ticket management</li>
+      <li>CASL-compliant email delivery platforms</li>
+    </ul>
+    <p>
+      These providers act only as service processors on behalf of the Society and do not use
+      personal information for unrelated purposes.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Storage and Retention</h3>
+    <p>
+      Personal information is retained only as long as necessary to fulfill Society purposes,
+      comply with applicable regulations, and support administrative and reporting needs.
+      Raffle records may be retained in accordance with applicable gaming requirements.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Security</h3>
+    <p>
+      The Society takes reasonable administrative and technical measures to protect personal
+      information, including use of secure web connections, controlled access to Society
+      email accounts, and the use of reputable third-party platforms.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Sharing of Information</h3>
+    <p>
+      Personal information is not sold, traded, or rented. Information may be shared only
+      among authorized Society directors or volunteers for legitimate Society purposes, with
+      required service providers, or where required by law.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Tax Receipts</h3>
+    <p>
+      The Forrest Field Enhancement Society is a registered society and is not able to issue
+      charitable tax receipts for donations.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Privacy Officer</h3>
+    <p>
+      The Chair of the Forrest Field Enhancement Society acts as the Society’s Privacy Officer
+      and is responsible for overseeing privacy-related matters.
+    </p>
+    <p>
+      Privacy inquiries may be directed to:
+      <br>
+      <strong>Forrest Field Enhancement Society</strong>
+      <br>
+      Email: <a href="mailto:info@forrestfieldes.ca">info@forrestfieldes.ca</a>
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h3>Consent and Updates</h3>
+    <p>
+      By providing personal information to the Society, individuals consent to its collection,
+      use, and disclosure as described in this Privacy Statement. This Privacy Statement may be
+      updated from time to time, and the current version will always be available on the
+      Society’s website.
+    </p>
+  </div>
+</section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="small">
+        <strong>Forrest Field Enhancement Society</strong> — Ladysmith, BC - <a href="/privacy">Privacy Policy</a>
+        <br />
+        <span class="muted"><a href="mailto:info@forrestfieldes.ca">info@forrestfieldes.ca</a></span>
+		  <p>Website design setup and hosting courtesy of Sam Day</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
