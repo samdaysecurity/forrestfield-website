@@ -146,8 +146,99 @@
       .hero .hero-wrap { flex-direction: column; align-items: flex-start; }
       .hero .hero-media { width: 70%; max-width: 380px; }
     }
-  </style>
+  /* === Raffle Thermometer (inline, white background) === */
+
+  /* override section divider ONLY for raffle */
+  #raffle {
+    border-top: none;
+  }
+
+  .raffle-progress-wrap {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-top: 18px;
+    padding: 14px 16px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+
+  .thermometer {
+    position: relative;
+    width: 18px;
+    height: 110px;
+    background: #f1f3f5;
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .thermometer-fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(
+      to top,
+      #dc2626,
+      #f59e0b,
+      #16a34a
+    );
+    transition: height 0.6s ease;
+  }
+
+  .raffle-progress-text h4 {
+    margin: 0 0 6px;
+    font-size: 1.15rem;
+  }
+
+  .raffle-progress-text .big {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--brand);
+    margin: 4px 0;
+  }
+
+  .raffle-progress-text p {
+    margin: 4px 0;
+    font-weight: 600;
+  }
+  </style>  
 </head>
+<script>
+  (function () {
+    const TOTAL_TICKETS = 1200;
+    const FUNDING_GOAL = 120000;
+
+    fetch(
+      "https://widget.rafflenexus.com/rn/ffes032026/ticket-sales.json?key=QALzWEbn9rZmjgH49PghWJCzE9pVaV4DSz54FRe8aq"
+    )
+      .then(response => response.json())
+      .then(data => {
+        const ticketsSold = Number(data.total_tickets_sold) || 0;
+        const totalSales = Number(data.total_sales) || 0;
+
+        const percent = Math.min(
+          (ticketsSold / TOTAL_TICKETS) * 100,
+          100
+        );
+
+        document.getElementById("tickets-sold").textContent =
+          `${ticketsSold.toLocaleString()} tickets sold`;
+
+        document.getElementById("funds-raised").textContent =
+          `$${totalSales.toLocaleString()} raised toward our $${FUNDING_GOAL.toLocaleString()} playground goal`;
+
+        document.getElementById("raffle-fill").style.height =
+          percent + "%";
+      })
+      .catch(() => {
+        document.getElementById("tickets-sold").textContent =
+          "Live progress temporarily unavailable";
+      });
+  })();
+</script>
 <body>
   <!-- Top anchor for 'back to top' link -->
   <div id="top"></div>
@@ -195,7 +286,7 @@
             </p>
             <div class="cta-row">
               <a class="btn primary" href="#project">See Current Project</a>
-              <a class="btn ghost" href="https://raffle.forrestfieldes.ca">Boat Raffle</a>
+              <a class="btn ghost" href="#raffle">Boat Raffle</a>
               <a class="btn ghost" href="#purpose">Read Our Purpose</a>
             </div>
           </div>
@@ -307,18 +398,38 @@
             </ul>
             <p class="note"><strong>Disclaimer:</strong> Odds of winning are 1 in 1200!</p>
 			 <p class="note"><strong>Know your limit, play within it,  <a href="https://www.bcresponsiblegambling.ca">www.bcresponsiblegambling.ca</a> </strong> </p>		 
-			 <p class="note"><strong>Problem Gambling Help Line 1-888-795-6111 </strong> </p>					 
+			 <p class="note"><strong>Problem Gambling Help Line 1-888-795-6111 </strong> </p>
+<div class="raffle-progress-wrap">
+  <div class="thermometer">
+    <div class="thermometer-fill" id="raffle-fill"></div>
+  </div>
+
+  <div class="raffle-progress-text">
+    <h4>Raffle Progress</h4>
+
+    <div class="big" id="tickets-sold">
+      0 tickets sold
+    </div>
+
+    <p id="funds-raised">
+      $0 raised toward our $120,000 playground goal
+    </p>
+
+    <p class="note">
+      Every ticket brings us closer to a brand‑new community playground.
+    </p>
+  </div>
+</div>			 
           </div>
           <div>
             <figure class="figure">
               <img src="Seadoo-boat-volunteer-fair.jpg" alt="Boat prize" />
               <figcaption> Ladysmith Volunteer Fair, April 22, 2026.</figcaption>
             </figure>
-          </div>
+          </div>		  
         </div>
       </div>
     </section>
-    
     <!-- FUTURE DEVELOPMENT -->
     <section id="future">
       <div class="container">
