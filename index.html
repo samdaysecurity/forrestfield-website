@@ -175,18 +175,31 @@
   }
 
   .thermometer-fill {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 0%;
-    background: linear-gradient(
-      to top,
-      #dc2626,
-      #f59e0b,
-      #16a34a
-    );
-    transition: height 0.6s ease;
-  }
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background: #e53935;
+  transition: height 0.6s ease, background-color 0.4s ease, opacity 0.4s ease;
+}
+
+/* Color states */
+.red    { background-color: #e53935; }
+.orange { background-color: #fb8c00; }
+.yellow { background-color: #fdd835; }
+.green  { background-color: #43a047; }
+.white  { background-color: #ffffff; }
+
+/* Pulsing at 100% */
+@keyframes pulseWhite {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.pulse {
+  animation: pulseWhite 1.5s infinite;
+}
 
   .raffle-progress-text h4 {
     margin: 0 0 6px;
@@ -207,37 +220,54 @@
   </style>  
 </head>
 <script>
-  (function () {
-    const TOTAL_TICKETS = 1200;
-    const FUNDING_GOAL = 120000;
+(function () {
+  const TOTAL_TICKETS = 1200;
+  const FUNDING_GOAL = 120000;
 
-    fetch(
-      "https://widget.rafflenexus.com/rn/ffes032026/ticket-sales.json?key=QALzWEbn9rZmjgH49PghWJCzE9pVaV4DSz54FRe8aq"
-    )
-      .then(response => response.json())
-      .then(data => {
-        const ticketsSold = Number(data.total_tickets_sold) || 0;
-        const totalSales = Number(data.total_sales) || 0;
+  fetch(
+    "https://widget.rafflenexus.com/rn/ffes032026/ticket-sales.json?key=QALzWEbn9rZmjgH49PghWJCzE9pVaV4DSz54FRe8aq"
+  )
+    .then(response => response.json())
+    .then(data => {
+      const ticketsSold = Number(data.total_tickets_sold) || 0;
+      const totalSales = Number(data.total_sales) || 0;
 
-        const percent = Math.min(
-          (ticketsSold / TOTAL_TICKETS) * 100,
-          100
-        );
+      const percent = Math.min((ticketsSold / TOTAL_TICKETS) * 100, 100);
 
-        document.getElementById("tickets-sold").textContent =
-          `${ticketsSold.toLocaleString()} tickets sold`;
+      document.getElementById("tickets-sold").textContent =
+        `${ticketsSold.toLocaleString()} tickets sold`;
 
-        document.getElementById("funds-raised").textContent =
-          `$${totalSales.toLocaleString()} raised toward our $${FUNDING_GOAL.toLocaleString()} playground goal`;
+      document.getElementById("funds-raised").textContent =
+        `$${totalSales.toLocaleString()} raised toward our $${FUNDING_GOAL.toLocaleString()} playground goal`;
 
-        document.getElementById("raffle-fill").style.height =
-          percent + "%";
-      })
-      .catch(() => {
-        document.getElementById("tickets-sold").textContent =
-          "Live progress temporarily unavailable";
-      });
-  })();
+      const fill = document.getElementById("raffle-fill");
+
+      fill.style.height = percent + "%";
+
+      // reset classes
+      fill.classList.remove("red","orange","yellow","green","white","pulse");
+
+      // apply color thresholds
+      if (percent >= 100) {
+        fill.classList.add("white", "pulse");
+      } else if (percent >= 85) {
+        fill.classList.add("white");
+      } else if (percent >= 65) {
+        fill.classList.add("green");
+      } else if (percent >= 50) {
+        fill.classList.add("yellow");
+      } else if (percent >= 25) {
+        fill.classList.add("orange");
+      } else {
+        fill.classList.add("red");
+      }
+
+    })
+    .catch(() => {
+      document.getElementById("tickets-sold").textContent =
+        "Live progress temporarily unavailable";
+    });
+})();
 </script>
 <body>
   <!-- Top anchor for 'back to top' link -->
