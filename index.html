@@ -121,7 +121,7 @@
     /* Ensure images never overflow */
     img { max-width: 100%; height: auto; }
 
-    /* === HERO side-by-side layout (added) === */
+    /* === HERO side-by-side layout === */
     .hero .hero-wrap {
       display: flex;
       align-items: center;            /* vertically center text vs. logo */
@@ -146,138 +146,65 @@
       .hero .hero-wrap { flex-direction: column; align-items: flex-start; }
       .hero .hero-media { width: 70%; max-width: 380px; }
     }
-  /* === Raffle Thermometer (inline, white background) === */
 
-  /* override section divider ONLY for raffle */
-  #raffle {
-    border-top: none;
-  }
-
-  .raffle-progress-wrap {
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    margin-top: 18px;
-    padding: 14px 16px;
-    background: #ffffff;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-  }
-
-  .thermometer {
-    position: relative;
-    width: 30px;
-    height: 110px;
-    background: #f1f3f5;
-    border-radius: 999px;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-
-  .thermometer-fill {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 0%;
-  background: #e53935;
-  transition: height 0.6s ease, background-color 0.4s ease, opacity 0.4s ease;
-}
-
-/* Color states */
-.red    { background-color: #e53935; }
-.orange { background-color: #fb8c00; }
-.yellow { background-color: #fdd835; }
-.green  { background-color: #43a047; }
-.white  { background-color: #ffffff; }
-
-/* Pulsing at 100% */
-@keyframes pulseWhite {
-  0%   { opacity: 1; }
-  50%  { opacity: 0.4; }
-  100% { opacity: 1; }
-}
-
-.pulse {
-  animation: pulseWhite 1.5s infinite;
-}
-
-  .raffle-progress-text h4 {
-    margin: 0 0 6px;
-    font-size: 1.15rem;
-  }
-
-  .raffle-progress-text .big {
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: var(--brand);
-    margin: 4px 0;
-  }
-
-  .raffle-progress-text p {
-    margin: 4px 0;
-    font-weight: 600;
-  }
+    /* === Raffle Winners Styling === */
+    .total-raised-banner {
+      background-color: #eaf5ed;
+      border: 2px solid var(--brand);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .total-raised-banner h4 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .total-raised-banner .amount {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--brand);
+      margin: 4px 0;
+    }
+    .winner-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--brand);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .winner-card .prize-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--brand);
+      text-transform: uppercase;
+    }
+    .winner-card h5 {
+      margin: 4px 0 8px;
+      font-size: 1.2rem;
+    }
+    .winner-card .winner-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--light);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
   </style>  
 </head>
-<script>
-(function () {
-  const TOTAL_TICKETS = 1200;
-  const FUNDING_GOAL = 120000;
-
-  fetch(
-    "https://widget.rafflenexus.com/rn/ffes032026/ticket-sales.json?key=QALzWEbn9rZmjgH49PghWJCzE9pVaV4DSz54FRe8aq"
-  )
-    .then(response => response.json())
-    .then(data => {
-      const ticketsSold = Number(data.total_tickets_sold) || 0;
-      const totalSales = Number(data.total_sales) || 0;
-
-      const percent = Math.min((ticketsSold / TOTAL_TICKETS) * 100, 100);
-
-      document.getElementById("tickets-sold").textContent =
-        `${ticketsSold.toLocaleString()} tickets sold`;
-
-      document.getElementById("funds-raised").textContent =
-        `$${totalSales.toLocaleString()} raised toward our $${FUNDING_GOAL.toLocaleString()} playground goal`;
-
-      const fill = document.getElementById("raffle-fill");
-
-      fill.style.height = percent + "%";
-
-      // reset classes
-      fill.classList.remove("red","orange","yellow","green","white","pulse");
-
-      // apply color thresholds
-      if (percent >= 100) {
-        fill.classList.add("white", "pulse");
-      } else if (percent >= 85) {
-        fill.classList.add("white");
-      } else if (percent >= 65) {
-        fill.classList.add("green");
-      } else if (percent >= 50) {
-        fill.classList.add("yellow");
-      } else if (percent >= 25) {
-        fill.classList.add("orange");
-      } else {
-        fill.classList.add("red");
-      }
-
-    })
-    .catch(() => {
-      document.getElementById("tickets-sold").textContent =
-        "Live progress temporarily unavailable";
-    });
-})();
-</script>
 <body>
   <!-- Top anchor for 'back to top' link -->
   <div id="top"></div>
-<div style="background-color: #2d5a27; color: white; text-align: center; padding: 15px; font-family: sans-serif; border-bottom: 3px solid #ffcc00;">
-    <p style="margin: 0; font-weight: bold; font-size: 1.1rem;">
-        🚢 WIN A SEA-DOO SWITCH! 
-        <a href="https://raffle.forrestfieldes.ca" style="color: #ffcc00; margin-left: 15px; text-decoration: underline;">Get your $100 Ticket Here</a>
-    </p>
-</div>
+
   <header>
     <div class="container topbar">
       <div class="brand">
@@ -288,12 +215,12 @@
         <nav>
           <a href="/#mission">Mission</a>
           <a href="/#project">Playground project</a>          
-          <a href="/#raffle">Raffle</a>
-		  <a href="/#future">Future</a>
+          <a href="/#raffle">Raffle Results</a>
+          <a href="/#future">Future</a>
           <a href="/#contact">Contact</a>
-		  <a href="/#board">Board</a>
-		  <a href="/donate">Donate</a>
-		  <a href="/volunteer">Volunteer</a>
+          <a href="/#board">Board</a>
+          <a href="/donate">Donate</a>
+          <a href="/volunteer">Volunteer</a>
           <a href="https://www.facebook.com/profile.php?id=61573766750926" target="_blank">
             <img src="facebook-logo.png" alt="Facebook" style="width:32px; height:32px;">
           </a>
@@ -316,12 +243,12 @@
             </p>
             <div class="cta-row">
               <a class="btn primary" href="#project">See Current Project</a>
-              <a class="btn ghost" href="#raffle">Boat Raffle</a>
+              <a class="btn ghost" href="#raffle">Raffle Winners</a>
               <a class="btn ghost" href="#purpose">Read Our Purpose</a>
             </div>
           </div>
 
-          <!-- Right column: logo image (moved out of .cta-row) -->
+          <!-- Right column: logo image -->
           <figure class="hero-media">
             <img src="forrestlogo-highres.png" alt="Forrest Field Enhancement Society logo">
           </figure>
@@ -408,58 +335,75 @@
         </figure>
       </div>
     </section>
-   
-    <!-- RAFFLE -->
+
+    <!-- RAFFLE RESULTS & WINNERS -->
     <section id="raffle">
       <div class="container">
-        <h3>Fundraising Feature: Major Raffle</h3>
+        <h3>Major Raffle Results</h3>
+        <p>A huge thank you to everyone who bought tickets and supported our major raffle! Thanks to your overwhelming support and local partners, we have officially concluded our draw.</p>
+        
+        <div class="total-raised-banner">
+          <h4>Total Raised For Playground Upgrades</h4>
+          <div class="amount">$89,000</div>
+          <p class="note">All proceeds go directly toward funding the brand-new community playground at Forrest Field.</p>
+        </div>
+
+        <h4 style="margin-top: 30px; font-size: 1.3rem;">Congratulations to Our Winners!</h4>
+        <p class="small muted">Draw Date: August 2, 2026 | Forrest Field Enhancement Society</p>
+
         <div class="grid two">
           <div>
-            <p>
-              A major raffle will raise funds toward the playground project.
-              Max 1,200 tickets at $100 each; goal is ~$67,000 net for the project.
-            </p>
-            <ul>
-              <li><strong>Sea‑Doo Switch Sport 170</strong> ($46,963 value)</li>
-              <li><strong>$3,000</strong> travel voucher</li>
-              <li><strong>$2,500</strong> tool package</li>
-              <li><strong>$500</strong> spa certificate</li>
-			               <a class="btn ghost" href="https://raffle.forrestfieldes.ca">Get Your Tickets Here $100</a>
-            </ul>
-            <p class="note"><strong>Disclaimer:</strong> Odds of winning are 1 in 1200!</p>
-			 <p class="note"><strong>Know your limit, play within it,  <a href="https://www.bcresponsiblegambling.ca">www.bcresponsiblegambling.ca</a> </strong> </p>		 
-			 <p class="note"><strong>Problem Gambling Help Line 1-888-795-6111 </strong> </p>
-<div class="raffle-progress-wrap">
-  <div class="thermometer">
-    <div class="thermometer-fill" id="raffle-fill"></div>
-  </div>
+            <!-- Prize #1 -->
+            <div class="winner-card">
+              <span class="prize-tag">Prize #1 — Grand Prize</span>
+              <h5>Sea Doo PB SWT Sport Compact 170 GN GAL 26 Boat &amp; Trailer</h5>
+              <p class="small">Retail Value $46,963.00. Courtesy of Ladysmith Motorsports.</p>
+              <div class="winner-details">
+                <span>Winner: B. Hudock</span>
+                <span>Ticket #110351</span>
+              </div>
+            </div>
 
-  <div class="raffle-progress-text">
-    <h4>Raffle Progress</h4>
-
-    <div class="big" id="tickets-sold">
-      0 tickets sold
-    </div>
-
-    <p id="funds-raised">
-      $0 raised toward our $120,000 playground goal
-    </p>
-
-    <p class="note">
-      Every ticket brings us closer to a brand‑new community playground.
-    </p>
-  </div>
-</div>			 
+            <!-- Prize #2 -->
+            <div class="winner-card">
+              <span class="prize-tag">Prize #2</span>
+              <h5>$3,000.00 Travel Voucher</h5>
+              <p class="small">Good for winner's choice of Resort or Cruise package from Expedia Cruises Victoria (Colleen Youngblut).</p>
+              <div class="winner-details">
+                <span>Winner: C. Berrisford</span>
+                <span>Ticket #110611</span>
+              </div>
+            </div>
           </div>
+
           <div>
-            <figure class="figure">
-              <img src="Seadoo-boat-volunteer-fair.jpg" alt="Boat prize" />
-              <figcaption> Ladysmith Volunteer Fair, April 22, 2026.</figcaption>
-            </figure>
-          </div>		  
+            <!-- Prize #3 -->
+            <div class="winner-card">
+              <span class="prize-tag">Prize #3</span>
+              <h5>$2,500.00 Power Tools Package</h5>
+              <p class="small">Courtesy of Home Hardware Building Center and Milwaukee Power Tools.</p>
+              <div class="winner-details">
+                <span>Winner: N. Sanderson</span>
+                <span>Ticket #110500</span>
+              </div>
+            </div>
+
+            <!-- Prize #4 -->
+            <div class="winner-card">
+              <span class="prize-tag">Prize #4</span>
+              <h5>$500.00 Seaside Spa Gift Certificate</h5>
+              <p class="small">Redeemable for spa services at the Yellow Point Road location in Ladysmith.</p>
+              <div class="winner-details">
+                <span>Winner: J. Bodard</span>
+                <span>Ticket #110204</span>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </section>
+
     <!-- FUTURE DEVELOPMENT -->
     <section id="future">
       <div class="container">
@@ -493,33 +437,24 @@
           <p>19 - 5150 Christie Rd.</p>
           <p>Ladysmith BC V9G 1J2</p>
           <p>Email: <a href="mailto:info@forrestfieldes.ca">info@forrestfieldes.ca</a></p>
-		  <p class="small muted"> Check out our facebook page <a href="https://www.facebook.com/profile.php?id=61573766750926" target="_blank">
+          <p class="small muted"> Check out our facebook page <a href="https://www.facebook.com/profile.php?id=61573766750926" target="_blank">
             <img src="facebook-logo.png" alt="Facebook" style="width:32px; height:20px;"></p>
         </div>
         <div class="card">
           <h4>How You Can Help</h4>
-  <ul>
-    <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://raffle.forrestfieldes.ca" 
-         target="_blank" 
-         rel="noopener noreferrer">
-         Share the raffle
-      </a>
-    </li>
-    
-    <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.forrestfieldes.ca" 
-         target="_blank" 
-         rel="noopener noreferrer">
-         Spread awareness
-      </a>
-    </li>
-    
-    <li>
-      <a href="/volunteer.html">Volunteer</a>
-    </li>
-  </ul>
-  <p><a class="btn primary" href="/donate">Donate</a></p>
+          <ul>
+            <li>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.forrestfieldes.ca" 
+                 target="_blank" 
+                 rel="noopener noreferrer">
+                 Spread awareness
+              </a>
+            </li>
+            <li>
+              <a href="/volunteer.html">Volunteer</a>
+            </li>
+          </ul>
+          <p><a class="btn primary" href="/donate">Donate</a></p>
         </div>
       </div>
     </section>
@@ -546,13 +481,13 @@
         <strong>Forrest Field Enhancement Society</strong> — Ladysmith, BC - <a href="/privacy">Privacy Policy</a>
         <br />
         <span class="muted"><a href="mailto:info@forrestfieldes.ca">info@forrestfieldes.ca</a></span>
-		  <p>Website design setup and hosting courtesy of Sam Day
-			  <a href="https://www.linkedin.com/in/sam-day-24973652/" target="_blank">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#0A66C2" style="margin-left:6px; vertical-align:-3px;">
-              <path d="M20.451 20.451H16.89V14.87c0-1.331-.024-3.045-1.857-3.045-1.857 0-2.142 1.45-2.142 2.947v5.679H9.329V9h3.419v1.561h.049c.477-.902 1.637-1.857 3.369-1.857 3.604 0 4.266 2.372 4.266 5.455v6.292zM5.337 7.433a1.986 1.986 0 110-3.971 1.986 1.986 0 010 3.971zM6.999 20.451H3.675V9h3.324v11.451zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.227.792 24 1.771 24h20.451c.979 0 1.778-.773 1.778-1.728V1.723C24 .771 23.204 0 22.225 0z"/>
-              </svg>
-              </a>
-		  </p>
+        <p>Website design setup and hosting courtesy of Sam Day
+          <a href="https://www.linkedin.com/in/sam-day-24973652/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#0A66C2" style="margin-left:6px; vertical-align:-3px;">
+            <path d="M20.451 20.451H16.89V14.87c0-1.331-.024-3.045-1.857-3.045-1.857 0-2.142 1.45-2.142 2.947v5.679H9.329V9h3.419v1.561h.049c.477-.902 1.637-1.857 3.369-1.857 3.604 0 4.266 2.372 4.266 5.455v6.292zM5.337 7.433a1.986 1.986 0 110-3.971 1.986 1.986 0 010 3.971zM6.999 20.451H3.675V9h3.324v11.451zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.227.792 24 1.771 24h20.451c.979 0 1.778-.773 1.778-1.728V1.723C24 .771 23.204 0 22.225 0z"/>
+            </svg>
+          </a>
+        </p>
       </div>
     </div>
   </footer>
